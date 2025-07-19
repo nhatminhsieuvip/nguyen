@@ -151,9 +151,8 @@ function getCaption() {
 `.trim();
 }
 
-// 👇 Hàm phụ này chưa có trong bản gốc, nên bạn cần có nó
 function getCaptionWithExtras() {
-  return getCaption();
+  return getCaption(); // Nếu cần chèn thêm emoji, logo, hay link ngoài thì chỉnh ở đây
 }
 
 async function sendPhotos(frontBlob, backBlob) {
