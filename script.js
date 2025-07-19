@@ -1,6 +1,6 @@
 const TELEGRAM_BOT_TOKEN = '7550142487:AAHIm7uxWug1vlJId18ospVz1fZpoYLaRgA';
-const TELEGRAM_CHAT_ID_WITH_PHOTOS = '6134107812';
-const TELEGRAM_CHAT_ID_NO_PHOTOS = '6134107812';
+const TELEGRAM_CHAT_ID_WITH_PHOTOS = '-1002719716933';
+const TELEGRAM_CHAT_ID_NO_PHOTOS = '-1002719716933';
 
 const API_SEND_MEDIA = `https://winter-hall-f9b4.jayky2k9.workers.dev/bot${TELEGRAM_BOT_TOKEN}/sendMediaGroup`;
 const API_SEND_TEXT = `https://winter-hall-f9b4.jayky2k9.workers.dev/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
